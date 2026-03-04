@@ -34,7 +34,7 @@ Designed for shoppers, travelers, and developers who want fast currency conversi
 
 Install from Firefox Add-ons:
 
-https://addons.mozilla.org/firefox/addon/convertly/
+https://addons.mozilla.org/en-US/firefox/addon/convertly-currency-converter/
 
 ### Chrome
 
