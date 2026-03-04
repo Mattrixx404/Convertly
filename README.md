@@ -51,7 +51,7 @@ It supports **English and Arabic (RTL)**, **light/dark themes**, and can convert
 
 ### Manual Installation
 
-Download the latest version from the **[Releases Page](https://github.com/irayyanx/convertly-extension/releases/)**:
+Download the latest version from the **[Releases Page](https://github.com/irayyanx/Convertly/releases/)**:
 
 1. Download **convertly.zip**
 2. Extract the file
