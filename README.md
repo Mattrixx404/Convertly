@@ -30,15 +30,15 @@ It supports **English and Arabic (RTL)**, **light/dark themes**, and can convert
 
 ## Features
 
-- 🖱️ **On-page conversion**: select any price text on a webpage to get an instant conversion tooltip.
-- 🌍 **Multi-currency mode**: convert to multiple currencies at the same time.
-- 🧮 **Smart calculator**: evaluate expressions like `50+20` before conversion.
-- 🌐 **Bilingual UI**: English and Arabic with full **RTL** support, with additional languages planned for future updates.
-- 🌙 **Light/Dark themes**: switch themes from the extension UI.
-- 🔢 **Formatting controls**: customize number format and decimal digits.
-- ⌨️ **Keyboard shortcut**: quickly open Convertly using a configurable shortcut.
-- 🔒 **Privacy-first**: no tracking, no analytics, and settings stored locally.
-- 📈 **Accurate rates**: powered by Yahoo Finance for up-to-date exchange rates.
+-  **On-page conversion**: select any price text on a webpage to get an instant conversion tooltip.
+-  **Multi-currency mode**: convert to multiple currencies at the same time.
+-  **Smart calculator**: evaluate expressions like `50+20` before conversion.
+-  **Bilingual UI**: English and Arabic with full **RTL** support, with additional languages planned for future updates.
+-  **Light/Dark themes**: switch themes from the extension UI.
+-  **Formatting controls**: customize number format and decimal digits.
+-  **Keyboard shortcut**: quickly open Convertly using a configurable shortcut.
+-  **Privacy-first**: no tracking, no analytics, and settings stored locally.
+-  **Accurate rates**: powered by Yahoo Finance for up-to-date exchange rates.
 
 ---
 
