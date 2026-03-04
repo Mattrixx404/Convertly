@@ -63,9 +63,10 @@ jobs:
           jq --arg v "$VERSION" '.version=$v' manifest.chrome.json > dist/chrome/manifest.json
           jq --arg v "$VERSION" '.version=$v' manifest.firefox.json > dist/firefox/manifest.json
 
-          cd dist
-          zip -r "convertly-chrome-v$VERSION.zip" chrome
-          zip -r "convertly-firefox-v$VERSION.zip" firefox
+          cd dist/chrome
+          zip -r "../convertly-chrome-v$VERSION.zip" .
+          cd ../firefox
+          zip -r "../convertly-firefox-v$VERSION.zip" .
 
       - name: Upload release assets
         uses: softprops/action-gh-release@v2
