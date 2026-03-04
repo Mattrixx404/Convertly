@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap');
+
+:root {
+    --cpt-bg: rgba(255, 255, 255, 0.85);
+    --cpt-txt: #1a1a1a;
+    --cpt-border: rgba(0, 0, 0, 0.1);
+    --cpt-hover: rgba(0, 0, 0, 0.05);
+    --cpt-accent: #3b82f6;
+    --cpt-divider: rgba(0, 0, 0, 0.08);
+}
+[data-theme="dark"] {
+    --cpt-bg: rgba(30, 30, 30, 0.85);
+    --cpt-txt: #ffffff;
+    --cpt-border: rgba(255, 255, 255, 0.1);
+    --cpt-hover: rgba(255, 255, 255, 0.1);
+    --cpt-divider: rgba(255, 255, 255, 0.1);
+}
+
+.currency-pro-tooltip {
+    position: absolute; z-index: 2147483647;
+    background: var(--cpt-bg); color: var(--cpt-txt);
+    border-radius: 16px; padding: 10px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2), 0 0 0 1px var(--cpt-border);
+    font-family: 'Tajawal', sans-serif !important; min-width: 180px; 
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    opacity: 0; transform: translateY(10px) scale(0.95);
+    animation: cpt-pop-in 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes cpt-pop-in {
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.cpt-loader {
+    width: 24px; height: 24px; border: 3px solid var(--cpt-border);
+    border-top-color: var(--cpt-accent); border-radius: 50%;
+    animation: cpt-spin 0.8s linear infinite; margin: 12px auto; display: block;
+}
+@keyframes cpt-spin { to { transform: rotate(360deg); } }
+
+.cpt-list { display: flex; flex-direction: column; gap: 4px; }
+
+.cpt-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 14px;
+    border-radius: 12px;
+    transition: background 0.2s ease;
+    gap: 30px;
+    border-bottom: 1px solid var(--cpt-divider);
+}
+.cpt-row:last-child { border-bottom: none; }
+.cpt-row:hover { background: var(--cpt-hover); }
+
+.cpt-info { display: flex; flex-direction: column; flex: 1; overflow: hidden; }
+.cpt-amount { font-weight: 700; font-size: 18px; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cpt-curr { font-size: 13px; opacity: 0.7; font-weight: 500; }
+
+.cpt-copy {
+    background: var(--cpt-hover); border: none; cursor: pointer;
+    color: var(--cpt-txt); padding: 8px; border-radius: 10px;
+    display: flex; transition: 0.2s; opacity: 0.8;
+}
+.cpt-copy:hover { opacity: 1; background: var(--cpt-border); color: var(--cpt-accent); }
