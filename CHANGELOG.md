@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.1.0](https://github.com/irayyanx/Convertly/compare/v2.0.3...v2.1.0) (2026-03-15)
+
+
+### Features
+
+* restore CI pipeline, update browser manifests, and finalize AMOLED UI revamp ([744288b](https://github.com/irayyanx/Convertly/commit/744288b2ceb32adb5417eb4c7946eae868a0f24b))
+* **ui:** implement AMOLED Black theme and resolve interactivity glitches ([b9f6e06](https://github.com/irayyanx/Convertly/commit/b9f6e0631f16d4481e3ab9ca40c7399bccb59120))
+
 ## [2.0.3](https://github.com/irayyanx/Convertly/compare/v2.0.2...v2.0.3) (2026-03-04)
 
 
