@@ -425,7 +425,10 @@ function createTooltip(sel) {
   // Explicit dir attribute ensures numeric amounts always render LTR even
   // when the tooltip itself is set to RTL for Arabic label text.
   currentTooltip.setAttribute('dir', prefs.lang === 'ar' ? 'rtl' : 'ltr');
-  currentTooltip.innerHTML = '<div class="cpt-loader"></div>';
+  currentTooltip.textContent = '';
+  const loader = document.createElement('div');
+  loader.className = 'cpt-loader';
+  currentTooltip.appendChild(loader);
 
   // Prevent tooltip interactions from bubbling to the document-level dismiss handler
   currentTooltip.addEventListener('mousedown', (e) => e.stopPropagation());
@@ -448,28 +451,65 @@ function render(data) {
   const saveIcon = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>';
   const savedIcon = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>';
 
-  let h = '<div class="cpt-list">';
+  const parseSVG = (svgStr) => new DOMParser().parseFromString(svgStr, 'image/svg+xml').documentElement;
+
+  currentTooltip.textContent = '';
+  const listContainer = document.createElement('div');
+  listContainer.className = 'cpt-list';
+
   data.forEach(x => {
     const fmt = formatNum(x.value, x.currency);
     let displayCurr = x.currency;
     if (prefs.lang === 'ar' && CURRENCY_NAMES_AR[x.currency]) displayCurr = CURRENCY_NAMES_AR[x.currency];
-    h += `<div class="cpt-row">
-      <div class="cpt-info"><span class="cpt-amount">${fmt}</span> <span class="cpt-curr">${displayCurr}</span></div>
-      <div class="cpt-actions">
-        <button class="cpt-copy" data-val="${fmt} ${displayCurr}" title="Copy">${copyIcon}</button>
-        <button class="cpt-save" title="Save to History">${saveIcon}</button>
-      </div>
-    </div>`;
+    
+    const row = document.createElement('div');
+    row.className = 'cpt-row';
+    
+    const info = document.createElement('div');
+    info.className = 'cpt-info';
+    
+    const amtSpan = document.createElement('span');
+    amtSpan.className = 'cpt-amount';
+    amtSpan.textContent = fmt;
+    
+    const currSpan = document.createElement('span');
+    currSpan.className = 'cpt-curr';
+    currSpan.textContent = displayCurr;
+    
+    info.appendChild(amtSpan);
+    info.appendChild(document.createTextNode(' '));
+    info.appendChild(currSpan);
+    
+    const actions = document.createElement('div');
+    actions.className = 'cpt-actions';
+    
+    const copyBtn = document.createElement('button');
+    copyBtn.className = 'cpt-copy';
+    copyBtn.dataset.val = `${fmt} ${displayCurr}`;
+    copyBtn.title = 'Copy';
+    copyBtn.appendChild(parseSVG(copyIcon));
+    
+    const saveBtn = document.createElement('button');
+    saveBtn.className = 'cpt-save';
+    saveBtn.title = 'Save to History';
+    saveBtn.appendChild(parseSVG(saveIcon));
+    
+    actions.appendChild(copyBtn);
+    actions.appendChild(saveBtn);
+    
+    row.appendChild(info);
+    row.appendChild(actions);
+    listContainer.appendChild(row);
   });
-  h += '</div>';
-  currentTooltip.innerHTML = h;
+  
+  currentTooltip.appendChild(listContainer);
 
   // Copy button: writes formatted value to clipboard with brief visual confirmation
   currentTooltip.querySelectorAll('.cpt-copy').forEach(b => {
     b.onclick = () => {
       navigator.clipboard.writeText(b.dataset.val);
-      b.innerHTML = checkIcon;
-      setTimeout(() => { b.innerHTML = copyIcon; }, 1000);
+      b.textContent = ''; b.appendChild(parseSVG(checkIcon));
+      setTimeout(() => { b.textContent = ''; b.appendChild(parseSVG(copyIcon)); }, 1000);
     };
   });
 
@@ -493,10 +533,10 @@ function render(data) {
           console.warn('Convertly save error:', chrome.runtime.lastError.message);
           return;
         }
-        b.innerHTML = savedIcon;
+        b.textContent = ''; b.appendChild(parseSVG(savedIcon));
         b.classList.add('cpt-save-success');
         setTimeout(() => {
-          b.innerHTML = saveIcon;
+          b.textContent = ''; b.appendChild(parseSVG(saveIcon));
           b.classList.remove('cpt-save-success');
         }, 1000);
       });
@@ -509,5 +549,11 @@ function removeTooltip() {
 }
 
 function updateError() {
-  if (currentTooltip) currentTooltip.innerHTML = '<span style="color:#ef4444;font-size:13px;padding:8px 12px;display:block;font-weight:500;">Unavailable</span>';
+  if (currentTooltip) {
+    currentTooltip.textContent = '';
+    const span = document.createElement('span');
+    span.style.cssText = 'color:#ef4444;font-size:13px;padding:8px 12px;display:block;font-weight:500;';
+    span.textContent = 'Unavailable';
+    currentTooltip.appendChild(span);
+  }
 }
