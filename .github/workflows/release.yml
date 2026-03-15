@@ -40,7 +40,7 @@ jobs:
         run: |
           set -e
           sudo apt-get update -y
-          sudo apt-get install -y jq rsync zip
+          sudo apt-get install -y jq rsync zip imagemagick
 
           mkdir -p dist/chrome dist/firefox
 
