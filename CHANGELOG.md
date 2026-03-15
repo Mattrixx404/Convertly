@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.2](https://github.com/irayyanx/Convertly/compare/v2.1.1...v2.1.2) (2026-03-15)
+
+
+### Bug Fixes
+
+* isolate Firefox build and resolve AMO manifest warnings ([d83630e](https://github.com/irayyanx/Convertly/commit/d83630e79523b599f5313bf69184dc94ffcd77e7))
+
 ## [2.1.1](https://github.com/irayyanx/Convertly/compare/v2.1.0...v2.1.1) (2026-03-15)
 
 
