@@ -63,6 +63,19 @@ jobs:
           jq --arg v "$VERSION" '.version=$v' manifest.chrome.json > dist/chrome/manifest.json
           jq --arg v "$VERSION" '.version=$v' manifest.firefox.json > dist/firefox/manifest.json
 
+          # --- Firefox-specific post-processing ---
+          # Generate exact icon sizes for Firefox (ImageMagick is pre-installed on ubuntu-latest)
+          convert icon.png -resize 16x16 dist/firefox/icon16.png
+          convert icon.png -resize 48x48 dist/firefox/icon48.png
+          convert icon.png -resize 128x128 dist/firefox/icon128.png
+
+          # Overwrite default scripts with Firefox-safe (innerHTML-free) versions
+          mv dist/firefox/content-ff.js dist/firefox/content.js
+          mv dist/firefox/popup-ff.js dist/firefox/popup.js
+
+          # --- Chrome cleanup: remove Firefox-only files ---
+          rm -f dist/chrome/content-ff.js dist/chrome/popup-ff.js
+
           cd dist/chrome
           zip -r "../convertly-chrome-v$VERSION.zip" .
           cd ../firefox

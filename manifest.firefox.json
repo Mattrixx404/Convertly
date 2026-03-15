@@ -7,7 +7,8 @@
   "host_permissions": ["https://query1.finance.yahoo.com/*"],
   "browser_specific_settings": {
     "gecko": {
-      "id": "convertly-addon@alrayyan.com"
+      "id": "convertly-addon@alrayyan.com",
+      "data_collection_permissions": []
     }
   },
   "background": {
@@ -16,15 +17,15 @@
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
-      "16": "icon.png",
-      "48": "icon.png",
-      "128": "icon.png"
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
     }
   },
   "icons": {
-    "16": "icon.png",
-    "48": "icon.png",
-    "128": "icon.png"
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
   },
   "commands": {
     "_execute_action": {
