@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.0](https://github.com/irayyanx/Convertly/compare/v2.1.3...v2.2.0) (2026-03-16)
+
+
+### Features
+
+* implement clean architecture and fix history/manifest bugs ([e25e933](https://github.com/irayyanx/Convertly/commit/e25e93379e254bb10167856fdabdb03f2092915d))
+
 ## [2.1.3](https://github.com/irayyanx/Convertly/compare/v2.1.2...v2.1.3) (2026-03-15)
 
 
