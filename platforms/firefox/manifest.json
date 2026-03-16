@@ -8,7 +8,10 @@
   "browser_specific_settings": {
     "gecko": {
       "id": "convertly-addon@alrayyan.com",
-      "data_collection_permissions": {}
+      "strict_min_version": "120.0",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
     }
   },
   "background": {
