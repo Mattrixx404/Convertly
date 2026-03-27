@@ -131,12 +131,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 // --- Ghost Popup Fix: bridge on-page context into sync storage ---
 function bridgeOnPageToPopup(amount, fromCurrency) {
-  chrome.storage.sync.get(['lastAmount', 'fromCurrency'], (d) => {
-    if (d.lastAmount && d.lastAmount != amount) {
-      archiveManualEntry(d.lastAmount, d.fromCurrency || 'USD');
-    }
-    chrome.storage.sync.set({ lastAmount: String(amount), fromCurrency });
-  });
+  chrome.storage.sync.set({ lastAmount: String(amount), fromCurrency });
 }
 
 // --- History Management ---

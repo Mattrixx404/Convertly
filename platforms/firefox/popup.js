@@ -107,7 +107,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const inpDigits = document.getElementById('decimal-digits');
   const inpOnPageMode = document.getElementById('on-page-mode-select');
   const inpLang = document.getElementById('lang-select');
-  const checkboxOnPage = document.getElementById('onPageToggleCheckbox');
   const btnTheme = document.getElementById('btn-theme');
   const formatPreview = document.getElementById('format-preview');
   const btnClearHistory = document.getElementById('btn-clear-history');
@@ -141,7 +140,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (data.targetCurrency) selectedTo = data.targetCurrency;
       if (data.lastAmount) amountInput.value = data.lastAmount;
       if (data.prefs) prefs = { ...prefs, ...data.prefs };
-      checkboxOnPage.checked = data.onPageEnabled || false;
       if (selectedFrom === selectedTo) {
         const pList = data.selectedCurrencies || ['USD'];
         const alt = pList.find(c => c !== selectedFrom);
@@ -211,7 +209,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if (inpLang) inpLang.addEventListener('change', () => { prefs.lang = inpLang.value; applyLanguage(prefs.lang); savePrefs(); populateChecklist(); renderHistory(currentHistory); updateApiStatus(_lastProviderTimestamp); });
   if (inpDigits) inpDigits.addEventListener('change', savePrefs);
   if (inpOnPageMode) inpOnPageMode.addEventListener('change', savePrefs);
-  if (checkboxOnPage) checkboxOnPage.addEventListener('change', (e) => chrome.storage.sync.set({ onPageEnabled: e.target.checked }));
   if (btnTheme) btnTheme.addEventListener('click', () => { prefs.theme = (prefs.theme === 'dark') ? 'light' : 'dark'; applyTheme(prefs.theme); savePrefs(); });
   if (btnClearHistory) btnClearHistory.addEventListener('click', () => { chrome.storage.local.set({ history: [] }, () => { currentHistory = []; renderHistory([]); }); });
 
@@ -488,7 +485,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const all = Array.from(checklistContainer.querySelectorAll('input:checked')).map(x => x.value);
           if (!all.length) all.push(guessLocalCurrency());
           prefs.onPageMode = 'multi'; if (inpOnPageMode) inpOnPageMode.value = 'multi';
-          chrome.storage.sync.set({ selectedCurrencies: all, prefs });
+          chrome.storage.sync.set({ selectedCurrencies: all, prefs, onPageEnabled: true });
         });
         checklistContainer.appendChild(l);
       });
@@ -521,7 +518,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function savePrefs() {
     if (inpDigits) prefs.decimalDigits = parseInt(inpDigits.value);
-    if (inpOnPageMode) prefs.onPageMode = inpOnPageMode.value;
+    if (inpOnPageMode) {
+      prefs.onPageMode = inpOnPageMode.value;
+      const onPageEnabled = prefs.onPageMode !== 'disabled';
+      chrome.storage.sync.set({ onPageEnabled });
+    }
     if (inpLang) prefs.lang = inpLang.value;
     chrome.storage.sync.set({ prefs });
     calculate(); updateFormatPreview();

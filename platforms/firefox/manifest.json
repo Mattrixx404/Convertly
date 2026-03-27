@@ -3,15 +3,15 @@
   "name": "Convertly - Smart Currency Converter",
   "version": "0.0.0",
   "description": "Professional currency converter. Arabic support, Math solver, and Smart UI.",
-  "permissions": ["storage", "clipboardWrite", "tabs"],
+  "permissions": ["storage"],
   "host_permissions": ["https://query1.finance.yahoo.com/*"],
   "browser_specific_settings": {
     "gecko": {
       "id": "convertly-addon@alrayyan.com",
-      "strict_min_version": "120.0",
-      "data_collection_permissions": {
-        "required": ["none"]
-      }
+      "strict_min_version": "120.0"
+    },
+    "data_collection_permissions": {
+      "required": ["none"]
     }
   },
   "background": {

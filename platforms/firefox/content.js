@@ -169,6 +169,8 @@ function detectBillingCycle(selection) {
 
 function buildTextFragmentUrl(selection, selectedText) {
   const baseUrl = window.location.href.split('#')[0];
+  const supportsTextFragments = 'fragmentDirective' in document;
+  if (!supportsTextFragments) return baseUrl;
   const encodedText = encodeURIComponent(selectedText);
   try {
     if (!selection || selection.rangeCount === 0) return `${baseUrl}#:~:text=${encodedText}`;
