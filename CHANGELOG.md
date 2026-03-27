@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.3.1](https://github.com/irayyanx/Convertly/compare/v2.3.0...v2.3.1) (2026-03-27)
+
+
+### Bug Fixes
+
+* resolve AMO validation, CI pipeline bugs, and unify UI state ([7389bae](https://github.com/irayyanx/Convertly/commit/7389bae11b839f0e0989c97a2c121db654261bb6))
+
 ## [2.3.0](https://github.com/irayyanx/Convertly/compare/v2.2.0...v2.3.0) (2026-03-16)
 
 
